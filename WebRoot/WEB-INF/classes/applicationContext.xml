@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd  
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+	<!-- Spring scan config -->
+	<!-- 自动扫描改包以及子包下的类,如果使用了这个自动扫描配置-->  
+	<context:component-scan base-package="com.design.pojo" />
+	<!-- Spring scan config -->
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/design/pojo/Student.hbm.xml</value>
+				<value>com/design/pojo/Admin.hbm.xml</value>
+				<value>com/design/pojo/Score.hbm.xml</value>
+				<value>com/design/pojo/Course.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/library??useUnicode=true&amp;characterEncoding=utf-8" />
+		<property name="username" value="root" />
+		<property name="password" value="0000" />
+	</bean>
+
+	<bean id="AdminDao" class="com.design.dao.hibernate.AdminDaoHibernate"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="AdminManagerImpl" class="com.design.service.impl.AdminManagerImpl"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="adminDao">
+			<ref bean="AdminDao" />
+		</property>
+	</bean>
+
+	<bean id="StuDAO" class="com.design.dao.hibernate.StudentADOHibernate"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="StuManagerImpl" class="com.design.service.impl.StudentManagerImpl"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="stuADO">
+			<ref bean="StuDAO" />
+		</property>
+	</bean>
+
+	<bean id="CourseDAO" class="com.design.dao.hibernate.CourseDaoHibernate"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="CourseManagerImpl" class="com.design.service.impl.CourseManagerImpl"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="courseDAO">
+			<ref bean="CourseDAO" />
+		</property>
+	</bean>
+
+	<bean id="ScoreDAO" class="com.design.dao.hibernate.ScoreDaoHibernate"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="ScoreManagerImpl" class="com.design.service.impl.ScoreManagerImpl"
+		abstract="false" lazy-init="default" autowire="default"
+		dependency-check="default">
+		<property name="scoreDAO">
+			<ref bean="ScoreDAO" />
+		</property>
+	</bean>
+</beans> 

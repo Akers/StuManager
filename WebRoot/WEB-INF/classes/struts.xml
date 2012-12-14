@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<package name="sm" extends="struts-default">
+		<action name="login"
+			class="com.design.web.LoginAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+
+		<action name="modifyAdmin"
+			class="com.design.web.ModifyAdminAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/modifyPsw.jsp</result>
+		</action>
+
+		<action name="AddAdmin"
+			class="com.design.web.AddAdminAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/addAdmin.jsp</result>
+		</action>
+
+		<action name="delAdmin"
+			class="com.design.web.DelAdminAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/delAdmin.jsp</result>
+		</action>
+
+		<action name="showAdmins"
+			class="com.design.web.ShowAdminsAction">
+			<result name="success">/showAdmins.jsp</result>
+			<result name="input">/main.jsp</result>
+		</action>
+
+		<action name="showStudents"
+			class="com.design.web.ShowStudentsAction">
+			<result name="success">/showStudents.jsp</result>
+			<result name="input">/main.jsp</result>
+		</action>
+
+		<action name="addStudent"
+			class="com.design.web.AddStudentAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/addStudent.jsp</result>
+		</action>
+
+		<action name="delStudent"
+			class="com.design.web.DelStudentAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/delStudent.jsp</result>
+		</action>
+
+		<action name="addCourse"
+			class="com.design.web.AddCourseAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/addCourse.jsp</result>
+		</action>
+
+		<action name="showCourses"
+			class="com.design.web.ShowCoursesAction">
+			<result name="success">/showCourses.jsp</result>
+			<result name="input">/main.jsp</result>
+		</action>
+
+
+		<action name="addScore"
+			class="com.design.web.AddScoreAction">
+			<result name="success">/addScore.jsp</result>
+			<result name="input">/main.jsp</result>
+		</action>
+		
+		<action name="addScoreData"
+			class="com.design.web.AddScoreDataAction">
+			<result name="success">/main.jsp</result>
+			<result name="input">/addScore.jsp</result>
+		</action>		
+
+		<action name="showScores"
+			class="com.design.web.ShowScoresAction">
+			<result name="success">/showScores.jsp</result>
+			<result name="input">/main.jsp</result>
+		</action>		
+	</package>
+</struts>
